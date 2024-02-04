@@ -6,7 +6,7 @@
   "author": "Sayed Azhar Sabri <afzal.sayed26@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node srv/app.js",
+    "start": "node src/app.js",
     "build": "tsc"
   },
   "dependencies": {
