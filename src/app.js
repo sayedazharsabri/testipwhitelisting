@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Import necessary modules
 const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
+const ip_1 = __importDefault(require("ip"));
 // Create an Express application
 const app = (0, express_1.default)();
 const port = 3000;
@@ -22,7 +23,12 @@ const port = 3000;
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Make a GET request using axios
-        const response = yield axios_1.default.get("https://ipdomainipwhitelisting.onrender.com/");
+        const response = yield axios_1.default.get("https://ipdomainipwhitelisting.onrender.com/", {
+            withCredentials: true,
+            headers: {
+                realip: ip_1.default.address(),
+            },
+        });
         // Send the result back to the client
         res.status(response.status).send(response.data);
     }
